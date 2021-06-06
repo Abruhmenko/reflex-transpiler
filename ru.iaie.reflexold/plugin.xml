@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="reflexold_generator" name="ReflexOldGenerator" schema="schema/reflexold_generator.exsd"/>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package
+			uri = "http://www.iaie.ru/reflexold/ReflexOld"
+			class = "ru.iaie.reflexold.reflexOld.ReflexOldPackage"
+			genModel = "model/generated/ReflexOld.genmodel" />
+	</extension>
+</plugin>

@@ -1,0 +1,326 @@
+grammar ru.iaie.reflexold.ReflexOld with org.eclipse.xtext.common.Terminals
+
+generate reflexOld "http://www.iaie.ru/reflexold/ReflexOld"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+
+Program:
+	(en?="PROGR" | "опнцп") name=ID "{"
+	clock=ClockDefinition
+	(consts+=Const |
+	enums+=Enum |
+	functions+=Function |
+	ports+=Port |
+	processes+=Process)*
+	"}";
+
+ClockDefinition:
+	("TACT" | "рюйр") value=INTEGER ";";
+
+Process:
+	("PROC" | "опнж") name=ID "{"
+	((imports+=ImportedVariableList | variables+=ProcessVariable) ";")*
+	states+=State*
+	"}";
+
+State:
+	("STATE" | "яняр") name=ID "{"
+	stateFunction=StatementSequence
+	(timeoutFunction=TimeoutFunction)?
+	"}";
+
+ImportedVariableList:
+	(("FROM" "PROC") | ("хг" "опнж")) process=[Process]
+	variables+=[ProcessVariable] ("," variables+=[ProcessVariable])*;
+
+
+ProcessVariable:
+	(PhysicalVariable | ProgramVariable)
+	(
+		(local?=("LOCAL" | "кнйюк")) |
+		(shared?=("FOR" | "дкъ")
+			(
+				("ALL" | "бяеу") |
+				((("PROC") | ("опнж")) processes+=[Process] ("," processes+=[Process])*)
+			)
+		)
+	);
+
+PhysicalVariable:
+	type=Type name=ID "=" mapping=PortMapping;
+
+PortMapping:
+	"{" port=[Port] "[" (bits=INTEGER) "]" "}";
+
+Port:
+	type=PortType name=ID addr1=INTEGER addr2=INTEGER size=INTEGER ";";
+
+enum PortType:
+	INPUT_EN='INPUT' | INPUT_RU='бунд' |
+	OUTPUT_EN='OUTPUT' | OUTPUT_RU='бшунд';
+
+ProgramVariable:
+	type=Type name=ID;
+
+TimeoutFunction:
+	("TIMEOUT" | "рюилюср") (TimeAmountOrRef | "(" TimeAmountOrRef ")") body=Statement;
+
+fragment TimeAmountOrRef:
+	time=INTEGER | ref=[IdReference];
+
+Function:
+	("FUNCTION" | "тсмйжхъ") returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
+
+Const:
+	("CONST" | "йнмяр") name=ID value=Expression ";";
+
+Enum:
+	("ENUM" | "оепевхякемхе") "{" enumMembers+=EnumMember ("," enumMembers+=EnumMember)* "}" ";";
+
+EnumMember:
+	name=ID ("=" value=Expression)?;
+
+		// Statements
+Statement:
+	{Statement} ";" | CompoundStatement | StartProcStat | StopProcStat |
+	ErrorStat | RestartStat | ResetStat | LoopStat | SetStateStat |
+	IfElseStat | SwitchStat | Expression ";";
+
+StatementSequence:
+	{StatementSequence} statements+=Statement*;
+
+CompoundStatement:
+	{CompoundStatement} "{" statements+=Statement* "}";
+
+IfElseStat:
+	("IF" | "еякх") "(" cond=Expression ")"
+	then=Statement
+	(=> ("ELSE" | "хмюве") else=Statement)?;
+
+SwitchStat:
+	("SWITCH" | "пюганп") "(" expr=Expression ")" "{"
+	options+=CaseStat*
+	defaultOption=DefaultStat?
+	"}";
+
+CaseStat:
+	("CASE" | "яксвюи") option=Expression ":" "{" SwitchOptionStatSequence "}";
+
+DefaultStat:
+	("DEFAULT" | "слнквюмхе") ":" "{" SwitchOptionStatSequence "}";
+
+fragment SwitchOptionStatSequence:
+	statements+=Statement* hasBreak?=BreakStat?;
+
+BreakStat:
+	("BREAK" | "йнмеж") ";";
+
+StartProcStat:
+	("START" | "ярюпр") ("PROC" | "опнж")? process=[Process] ";";
+
+StopProcStat:
+	{StopProcStat} ("STOP" | "ярно") (("PROC" | "опнж")? (process=[Process]))? ";";
+
+ErrorStat:
+	{ErrorStat} ("ERROR" | "ньхайю") (("PROC" | "опнж")? (process=[Process]))? ";";
+
+RestartStat:
+	{RestartStat} (("RESTART" "PROC") | ("пеярюпр" "опнж")) ";";
+
+ResetStat:
+	{ResetStat} (("RESTART" "TIMER") | ("пеярюпр" "рюилеп")) ";";
+
+LoopStat:
+	{LoopStat} ("LOOP" | "гюжхйкхрэ") ";";
+
+SetStateStat:
+	{SetStateStat} ("SET" | "б")
+	((next?=("NEXT" | "якедсчыее")) | (("STATE" | "яняр") state=[State])) ";";
+
+IdReference:
+	PhysicalVariable | ProgramVariable | EnumMember | Const;
+
+		// Expressions
+InfixOp:
+	op=InfixPostfixOp ref=[IdReference];
+
+PostfixOp:
+	ref=[IdReference] op=InfixPostfixOp;
+
+FunctionCall:
+	function=[Function] "(" (args+=Expression ("," args+=Expression)*)? ")";
+
+CheckStateExpression:
+	("PROC" | "опнж") process=[Process] (("IN" "STATE") | ("б" "яняр")) qualfier=StateQualifier;
+
+enum StateQualifier:
+	ACTIVE_EN="ACTIVE" | ACTIVE_RU="юйрхбмне" |
+	PASSIVE_EN="PASSIVE" | PASSIVE_RU="оюяяхбмне" |
+	STOP_EN="STOP" | STOP_RU="ярно" |
+	ERROR_EN="ERROR" | ERROR_RU="ньхайю";
+
+PrimaryExpression:
+	reference=[IdReference] |
+	{PrimaryExpression} integer=INTEGER |
+	{PrimaryExpression} floating=FLOAT |
+	{PrimaryExpression} bool=BOOL_LITERAL |
+	"(" nestedExpr=Expression ")";
+
+UnaryExpression:
+	PrimaryExpression |
+	FunctionCall |
+	PostfixOp |
+	InfixOp |
+	unaryOp=UnaryOp right=CastExpression;
+
+CastExpression:
+	UnaryExpression |
+	"(" type=Type ")" right=CastExpression;
+
+MultiplicativeExpression:
+	CastExpression ({MultiplicativeExpression.left=current} mulOp=MultiplicativeOp right=CastExpression)*;
+
+AdditiveExpression:
+	MultiplicativeExpression ({AdditiveExpression.left=current} addOp=AdditiveOp right=AdditiveExpression)*;
+
+ShiftExpression:
+	AdditiveExpression ({ShiftExpression.left=current} shiftOp=ShiftOp right=ShiftExpression)*;
+
+CompareExpression:
+	CheckStateExpression |
+	ShiftExpression ({CompareExpression.left=current} cmpOp=CompareOp right=CompareExpression)*;
+
+EqualityExpression:
+	CompareExpression ({EqualityExpression.left=current} eqCmpOp=CompareEqOp right=EqualityExpression)*;
+
+BitAndExpression:
+	EqualityExpression ({BitAndExpression.left=current} BIT_AND right=BitAndExpression)*;
+
+BitXorExpression:
+	BitAndExpression ({BitXorExpression.left=current} BIT_XOR right=BitXorExpression)*;
+
+BitOrExpression:
+	BitXorExpression ({BitOrExpression.left=current} BIT_OR right=BitOrExpression)*;
+
+LogicalAndExpression:
+	BitOrExpression ({LogicalAndExpression.left=current} LOGICAL_AND right=LogicalAndExpression)*;
+
+LogicalOrExpression:
+	LogicalAndExpression ({LogicalOrExpression.left=current} LOGICAL_OR right=LogicalOrExpression)*;
+
+AssignmentExpression:
+	(assignVar=[IdReference] assignOp=AssignOperator)? expr=LogicalOrExpression;
+
+Expression:
+	AssignmentExpression;
+
+
+enum InfixPostfixOp:
+	INC="++" | DEC="--";
+
+enum AssignOperator:
+	ASSIGN="=" | MUL="*=" | DIV="/=" | MOD="+=" | SUB="-=" | CIN="<<=" |
+	COUT=">>=" | BIT_AND="&=" | BIT_XOR="^=" | BIT_OR="|=";
+
+enum UnaryOp:
+	PLUS="+" | MINUS="-" | BIT_NOT="~" | LOGICAL_NOT="!";
+
+enum CompareOp:
+	LESS="<" | GREATER=">" | LESS_EQ="<=" | GREATER_EQ=">=";
+
+enum CompareEqOp:
+	EQ="==" | NOT_EQ="!=";
+
+enum ShiftOp:
+	LEFT_SHIFT=">>" | RIGHT_SHIFT="<<";
+
+enum AdditiveOp:
+	PLUS="+" | MINUS="-";
+
+enum MultiplicativeOp:
+	MUL="*" | DIV="/" | MOD="%";
+
+terminal LOGICAL_OR:
+	"||";
+
+terminal LOGICAL_AND:
+	"&&";
+
+terminal BIT_OR:
+	"|";
+
+terminal BIT_XOR:
+	"^";
+
+terminal BIT_AND:
+	"&";
+
+		// Types
+enum Type:
+	VOID_EN="VOID" | VOID_RU="осярн" |
+	FLOAT_EN="FLOAT" | FLOAT_RU="окюб" |
+	DOUBLE_EN="DOUBLE" | DOUBLE_RU="докюб" |
+	SHORT_EN="SHORT" | SHORT_RU="йжек" |
+	USHORT_EN="UNSIGNED SHORT" | USHORT_RU="аеггмюйнбне йжек" |
+	INT_EN="INT" | INT_RU="жек" |
+	UINT_EN="UNSIGNED INT" | UINT_RU="аеггмюйнбне жек" |
+	LONG_EN="LONG" | LONG_RU="джек" |
+	ULONG_EN="UNSIGNED LONG" | ULONG_RU="аеггмюйнбне джек" |
+	BOOL_EN="LOG" | BOOL_RU="кнц";
+
+		// Literals
+terminal INTEGER:
+	SIGN? (HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
+
+terminal FLOAT:
+	DEC_FLOAT | HEX_FLOAT;
+
+terminal fragment DEC_FLOAT:
+	DEC_SEQUENCE? '.' DEC_SEQUENCE (EXPONENT SIGN DEC_SEQUENCE)? (LONG | FLOAT_SUFFIX)?;
+
+terminal fragment HEX_FLOAT:
+	HEX_SEQUENCE? '.' HEX_SEQUENCE (BIN_EXPONENT SIGN DEC_SEQUENCE)? (LONG | FLOAT_SUFFIX)?;
+
+terminal fragment DEC_SEQUENCE:
+	('0'..'9')+;
+
+terminal fragment HEX_SEQUENCE:
+	('0'..'9' | 'a'..'f' | 'A'..'F')+;
+
+terminal fragment BIN_EXPONENT:
+	('p' | 'P');
+
+terminal fragment EXPONENT:
+	'e' | 'E';
+
+terminal fragment SIGN:
+	'+' | '-';
+
+terminal fragment DECIMAL:
+	"0" | ('1'..'9') ('0'..'9')*;
+
+terminal fragment OCTAL:
+	'0' ('0'..'7')+;
+
+terminal fragment HEX:
+	HEX_PREFIX HEX_SEQUENCE;
+
+terminal fragment HEX_PREFIX:
+	'0' ('x' | 'X');
+
+terminal fragment LONG:
+	"L" | "l";
+
+terminal fragment FLOAT_SUFFIX:
+	"F" | "f";
+
+terminal fragment UNSIGNED:
+	"U" | "u";
+
+terminal BOOL_LITERAL returns ecore::EBooleanObject:
+	"true" | "false";
+
+@Override
+terminal ID: 
+    ('^')?('a'..'z'|'A'..'Z'|'Ю'..'Ъ'|'ю'..'ъ'|'_')
+	('a'..'z'|'A'..'Z'|'Ю'..'Ъ'|'ю'..'ъ'|'_'|'0'..'9')*;
