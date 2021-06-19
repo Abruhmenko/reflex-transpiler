@@ -35,11 +35,9 @@ class ReflexOldGenerator implements IReflexOldGenerator {
 		generatorHelper = new GeneratorHelper(isEnglish)
 		fileName = '''«GENERATED_DIR_NAME»/«generatorHelper.translateName(program.name)».txt'''
 	}
-	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		fsa.generateFile(fileName, generateReflexProgram)
 	}
-	
 	def generateReflexProgram() {
 		return '''
 		program «generatorHelper.translateName(program.name)» {
@@ -57,12 +55,6 @@ class ReflexOldGenerator implements IReflexOldGenerator {
 		}
 		'''
 	}
-	/*
-	def identifier(String name) {
-		if (isEnglish) return name.toLowerCase
-		else return name.toLowerCase.transliterate()
-	}*/
-	
 	def generateConsts() {
 		return '''
 		«FOR constant : program.consts»
@@ -70,6 +62,13 @@ class ReflexOldGenerator implements IReflexOldGenerator {
 		«ENDFOR»
 		'''
 	}
+	
+	/*
+	def identifier(String name) {
+		if (isEnglish) return name.toLowerCase
+		else return name.toLowerCase.transliterate()
+	}*/
+	
 	def generateEnums() {
 		return '''
 		«FOR enumerator : program.enums»

@@ -26,7 +26,7 @@ import ru.iaie.reflexold.reflexOld.Statement
 import ru.iaie.reflexold.reflexOld.IdReference
 import ru.iaie.reflexold.reflexOld.Const
 import ru.iaie.reflexold.reflexOld.Port
-import ru.iaie.reflexold.reflexOld.Function
+import ru.iaie.reflexold.reflexOld.Enum
 
 class ReflexOldModelUtil {
 	
@@ -136,8 +136,8 @@ class ReflexOldModelUtil {
 		return s.getContainerOfType(Process).states.indexOf(s)
 	}
 	
-	def static  getArgTypeIndex(Type t, Function f) {
-		return f.argTypes.indexOf(t)
+	def static boolean isEnumMemberLast(EnumMember m, Enum e) {
+		return e.enumMembers.indexOf(m) == (e.enumMembers.length - 1)
 	}
 	
 	def static Type resolveType(IdReference ref) {

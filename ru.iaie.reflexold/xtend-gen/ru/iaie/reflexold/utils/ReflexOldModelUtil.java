@@ -22,7 +22,6 @@ import ru.iaie.reflexold.reflexOld.DefaultStat;
 import ru.iaie.reflexold.reflexOld.EnumMember;
 import ru.iaie.reflexold.reflexOld.ErrorStat;
 import ru.iaie.reflexold.reflexOld.Expression;
-import ru.iaie.reflexold.reflexOld.Function;
 import ru.iaie.reflexold.reflexOld.IdReference;
 import ru.iaie.reflexold.reflexOld.ImportedVariableList;
 import ru.iaie.reflexold.reflexOld.PhysicalVariable;
@@ -170,8 +169,11 @@ public class ReflexOldModelUtil {
     return EcoreUtil2.<ru.iaie.reflexold.reflexOld.Process>getContainerOfType(s, ru.iaie.reflexold.reflexOld.Process.class).getStates().indexOf(s);
   }
   
-  public static int getArgTypeIndex(final Type t, final Function f) {
-    return f.getArgTypes().indexOf(t);
+  public static boolean isEnumMemberLast(final EnumMember m, final ru.iaie.reflexold.reflexOld.Enum e) {
+    int _indexOf = e.getEnumMembers().indexOf(m);
+    int _length = ((Object[])Conversions.unwrapArray(e.getEnumMembers(), Object.class)).length;
+    int _minus = (_length - 1);
+    return (_indexOf == _minus);
   }
   
   public static Type resolveType(final IdReference ref) {

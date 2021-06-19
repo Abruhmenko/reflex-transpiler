@@ -15,6 +15,7 @@ import ru.iaie.reflexold.reflexOld.ResetStat
 import ru.iaie.reflexold.reflexOld.RestartStat
 import ru.iaie.reflexold.reflexOld.CompoundStatement
 import ru.iaie.reflexold.utils.LiteralUtil
+import ru.iaie.reflexold.reflexOld.LoopStat
 
 class StatementGenerator {
 	protected ExpressionGenerator expressionGenerator
@@ -134,4 +135,52 @@ class StatementGenerator {
 		return '''restart;
 		'''
 	}
+	
+	def boolean isStateLooped(State state) {
+		for (statement : state.stateFunction.statements) {
+			if (statement.hasLoop)
+				return true
+		}
+		return false
+	}
+	
+	def boolean hasLoop(EObject statement) {
+		switch statement {
+			LoopStat:
+				return true
+			IfElseStat: {
+				if (hasLoop(statement.then))
+					return true
+				if (statement.getElse !== null)
+					return hasLoop(statement.getElse)
+				return false
+			}
+			SwitchStat: {
+				for (variant : statement.options) {
+					for (stat : variant.statements) {
+						if (hasLoop(stat))
+							return true
+					}
+				}
+				if (statement.hasDefaultOption) {
+					for (stat : statement.defaultOption.statements) {
+						if (hasLoop(stat))
+							return true
+					}
+				}
+				return false
+			}
+			CompoundStatement: {
+				for (stat : statement.statements) {
+					if (hasLoop(stat))
+						return true
+				}
+				return false
+			}
+			default:
+				return false
+		}
+	}
+	
+	
 }

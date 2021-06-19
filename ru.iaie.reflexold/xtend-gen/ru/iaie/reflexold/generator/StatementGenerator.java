@@ -7,6 +7,7 @@ import ru.iaie.reflexold.reflexOld.CaseStat;
 import ru.iaie.reflexold.reflexOld.CompoundStatement;
 import ru.iaie.reflexold.reflexOld.Expression;
 import ru.iaie.reflexold.reflexOld.IfElseStat;
+import ru.iaie.reflexold.reflexOld.LoopStat;
 import ru.iaie.reflexold.reflexOld.ResetStat;
 import ru.iaie.reflexold.reflexOld.RestartStat;
 import ru.iaie.reflexold.reflexOld.SetStateStat;
@@ -292,5 +293,79 @@ public class StatementGenerator {
     _builder.append("restart;");
     _builder.newLine();
     return _builder.toString();
+  }
+  
+  public boolean isStateLooped(final State state) {
+    EList<Statement> _statements = state.getStateFunction().getStatements();
+    for (final Statement statement : _statements) {
+      boolean _hasLoop = this.hasLoop(statement);
+      if (_hasLoop) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean hasLoop(final EObject statement) {
+    boolean _matched = false;
+    if (statement instanceof LoopStat) {
+      _matched=true;
+      return true;
+    }
+    if (!_matched) {
+      if (statement instanceof IfElseStat) {
+        _matched=true;
+        boolean _hasLoop = this.hasLoop(((IfElseStat)statement).getThen());
+        if (_hasLoop) {
+          return true;
+        }
+        Statement _else = ((IfElseStat)statement).getElse();
+        boolean _tripleNotEquals = (_else != null);
+        if (_tripleNotEquals) {
+          return this.hasLoop(((IfElseStat)statement).getElse());
+        }
+        return false;
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof SwitchStat) {
+        _matched=true;
+        EList<CaseStat> _options = ((SwitchStat)statement).getOptions();
+        for (final CaseStat variant : _options) {
+          EList<Statement> _statements = variant.getStatements();
+          for (final Statement stat : _statements) {
+            boolean _hasLoop = this.hasLoop(stat);
+            if (_hasLoop) {
+              return true;
+            }
+          }
+        }
+        boolean _hasDefaultOption = ReflexOldModelUtil.hasDefaultOption(((SwitchStat)statement));
+        if (_hasDefaultOption) {
+          EList<Statement> _statements_1 = ((SwitchStat)statement).getDefaultOption().getStatements();
+          for (final Statement stat_1 : _statements_1) {
+            boolean _hasLoop_1 = this.hasLoop(stat_1);
+            if (_hasLoop_1) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+    }
+    if (!_matched) {
+      if (statement instanceof CompoundStatement) {
+        _matched=true;
+        EList<Statement> _statements = ((CompoundStatement)statement).getStatements();
+        for (final Statement stat : _statements) {
+          boolean _hasLoop = this.hasLoop(stat);
+          if (_hasLoop) {
+            return true;
+          }
+        }
+        return false;
+      }
+    }
+    return false;
   }
 }

@@ -40,7 +40,7 @@ class GeneratorHelper {
 		return '''«translateName(physVar.mapping.port.name)»[«IF physVar.mapping.isSingleBitMapping»0«ENDIF»]'''
 	}
 	
-	def generateConstantDefinition(Const c) {	// «expressionGenerator.resolveExprType(c)»
+	def generateConstantDefinition(Const c) {
 		val constType = expressionGenerator.resolveExprType(c.value)
 		return '''const «expressionGenerator.translateType(constType)» «expressionGenerator.getMapping(c)» = «expressionGenerator.translateExpr(c.value)»;
 		'''
@@ -50,7 +50,7 @@ class GeneratorHelper {
 		var result = '''
 		enum enumerator_«enumCount» {
 			«FOR enumMember : en.enumMembers»
-			«expressionGenerator.getMapping(enumMember)»«IF enumMember.hasValue» = «expressionGenerator.translateExpr(enumMember.value)»«ENDIF»,
+			«expressionGenerator.getMapping(enumMember)»«IF enumMember.hasValue» = «expressionGenerator.translateExpr(enumMember.value)»«ENDIF»«IF isEnumMemberLast(enumMember, en)»«ELSE»,«ENDIF»
 			«ENDFOR»
 		}
 		'''
@@ -136,7 +136,7 @@ class GeneratorHelper {
 	
 	def generateStateDefinition(State state) {
 		return '''
-		state «translateName(state.name)» {
+		state «translateName(state.name)» «IF statementGenerator.isStateLooped(state)»looped «ENDIF»{
 			«FOR stat : state.stateFunction.statements»
 			«statementGenerator.translateStatement(state, stat)»
 			«ENDFOR»

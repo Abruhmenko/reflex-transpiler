@@ -98,7 +98,13 @@ public class GeneratorHelper {
             _builder.append(_translateExpr, "\t");
           }
         }
-        _builder.append(",");
+        {
+          boolean _isEnumMemberLast = ReflexOldModelUtil.isEnumMemberLast(enumMember, en);
+          if (_isEnumMemberLast) {
+          } else {
+            _builder.append(",");
+          }
+        }
         _builder.newLineIfNotEmpty();
       }
     }
@@ -327,7 +333,14 @@ public class GeneratorHelper {
     _builder.append("state ");
     String _translateName = this.translateName(state.getName());
     _builder.append(_translateName);
-    _builder.append(" {");
+    _builder.append(" ");
+    {
+      boolean _isStateLooped = this.statementGenerator.isStateLooped(state);
+      if (_isStateLooped) {
+        _builder.append("looped ");
+      }
+    }
+    _builder.append("{");
     _builder.newLineIfNotEmpty();
     {
       EList<Statement> _statements = state.getStateFunction().getStatements();

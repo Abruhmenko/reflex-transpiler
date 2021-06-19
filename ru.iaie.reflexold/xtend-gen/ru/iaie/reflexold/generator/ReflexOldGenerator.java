@@ -105,12 +105,6 @@ public class ReflexOldGenerator implements IReflexOldGenerator {
     return _builder.toString();
   }
   
-  /**
-   * def identifier(String name) {
-   * if (isEnglish) return name.toLowerCase
-   * else return name.toLowerCase.transliterate()
-   * }
-   */
   public String generateConsts() {
     StringConcatenation _builder = new StringConcatenation();
     {
@@ -124,6 +118,12 @@ public class ReflexOldGenerator implements IReflexOldGenerator {
     return _builder.toString();
   }
   
+  /**
+   * def identifier(String name) {
+   * if (isEnglish) return name.toLowerCase
+   * else return name.toLowerCase.transliterate()
+   * }
+   */
   public String generateEnums() {
     StringConcatenation _builder = new StringConcatenation();
     {
