@@ -13,6 +13,7 @@ package ru.iaie.reflexold.reflexOld;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflexold.reflexOld.CheckStateExpression#isLogicalNot <em>Logical Not</em>}</li>
  *   <li>{@link ru.iaie.reflexold.reflexOld.CheckStateExpression#getProcess <em>Process</em>}</li>
  *   <li>{@link ru.iaie.reflexold.reflexOld.CheckStateExpression#getQualfier <em>Qualfier</em>}</li>
  * </ul>
@@ -23,6 +24,28 @@ package ru.iaie.reflexold.reflexOld;
  */
 public interface CheckStateExpression extends CompareExpression
 {
+  /**
+   * Returns the value of the '<em><b>Logical Not</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Logical Not</em>' attribute.
+   * @see #setLogicalNot(boolean)
+   * @see ru.iaie.reflexold.reflexOld.ReflexOldPackage#getCheckStateExpression_LogicalNot()
+   * @model
+   * @generated
+   */
+  boolean isLogicalNot();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflexold.reflexOld.CheckStateExpression#isLogicalNot <em>Logical Not</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Logical Not</em>' attribute.
+   * @see #isLogicalNot()
+   * @generated
+   */
+  void setLogicalNot(boolean value);
+
   /**
    * Returns the value of the '<em><b>Process</b></em>' reference.
    * <!-- begin-user-doc -->

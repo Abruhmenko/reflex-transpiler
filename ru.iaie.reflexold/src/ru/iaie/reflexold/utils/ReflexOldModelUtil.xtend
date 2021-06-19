@@ -79,6 +79,12 @@ class ReflexOldModelUtil {
 		}
 		return false
 	}
+	
+	/*
+	def static boolean hasLogicalNot(CheckStateExpression cse) {
+		return cse.logicalNot
+	}
+	*/
 
 	def static List<ProcessVariable> getImportedVariables(Process p) {
 		return p.imports.map[variables].flatten.toList

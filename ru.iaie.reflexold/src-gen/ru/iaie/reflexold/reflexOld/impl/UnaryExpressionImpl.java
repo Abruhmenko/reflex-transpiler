@@ -21,6 +21,7 @@ import ru.iaie.reflexold.reflexOld.UnaryOp;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflexold.reflexOld.impl.UnaryExpressionImpl#isReferenceOp <em>Reference Op</em>}</li>
  *   <li>{@link ru.iaie.reflexold.reflexOld.impl.UnaryExpressionImpl#getUnaryOp <em>Unary Op</em>}</li>
  * </ul>
  *
@@ -28,6 +29,26 @@ import ru.iaie.reflexold.reflexOld.UnaryOp;
  */
 public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpression
 {
+  /**
+   * The default value of the '{@link #isReferenceOp() <em>Reference Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isReferenceOp()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean REFERENCE_OP_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isReferenceOp() <em>Reference Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isReferenceOp()
+   * @generated
+   * @ordered
+   */
+  protected boolean referenceOp = REFERENCE_OP_EDEFAULT;
+
   /**
    * The default value of the '{@link #getUnaryOp() <em>Unary Op</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -75,6 +96,31 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
    * @generated
    */
   @Override
+  public boolean isReferenceOp()
+  {
+    return referenceOp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setReferenceOp(boolean newReferenceOp)
+  {
+    boolean oldReferenceOp = referenceOp;
+    referenceOp = newReferenceOp;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexOldPackage.UNARY_EXPRESSION__REFERENCE_OP, oldReferenceOp, referenceOp));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public UnaryOp getUnaryOp()
   {
     return unaryOp;
@@ -104,6 +150,8 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
   {
     switch (featureID)
     {
+      case ReflexOldPackage.UNARY_EXPRESSION__REFERENCE_OP:
+        return isReferenceOp();
       case ReflexOldPackage.UNARY_EXPRESSION__UNARY_OP:
         return getUnaryOp();
     }
@@ -120,6 +168,9 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
   {
     switch (featureID)
     {
+      case ReflexOldPackage.UNARY_EXPRESSION__REFERENCE_OP:
+        setReferenceOp((Boolean)newValue);
+        return;
       case ReflexOldPackage.UNARY_EXPRESSION__UNARY_OP:
         setUnaryOp((UnaryOp)newValue);
         return;
@@ -137,6 +188,9 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
   {
     switch (featureID)
     {
+      case ReflexOldPackage.UNARY_EXPRESSION__REFERENCE_OP:
+        setReferenceOp(REFERENCE_OP_EDEFAULT);
+        return;
       case ReflexOldPackage.UNARY_EXPRESSION__UNARY_OP:
         setUnaryOp(UNARY_OP_EDEFAULT);
         return;
@@ -154,6 +208,8 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
   {
     switch (featureID)
     {
+      case ReflexOldPackage.UNARY_EXPRESSION__REFERENCE_OP:
+        return referenceOp != REFERENCE_OP_EDEFAULT;
       case ReflexOldPackage.UNARY_EXPRESSION__UNARY_OP:
         return unaryOp != UNARY_OP_EDEFAULT;
     }
@@ -171,7 +227,9 @@ public class UnaryExpressionImpl extends CastExpressionImpl implements UnaryExpr
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (unaryOp: ");
+    result.append(" (referenceOp: ");
+    result.append(referenceOp);
+    result.append(", unaryOp: ");
     result.append(unaryOp);
     result.append(')');
     return result.toString();

@@ -1966,13 +1966,22 @@ public interface ReflexOldPackage extends EPackage
   int UNARY_EXPRESSION__TYPE = CAST_EXPRESSION__TYPE;
 
   /**
+   * The feature id for the '<em><b>Reference Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNARY_EXPRESSION__REFERENCE_OP = CAST_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Unary Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNARY_EXPRESSION__UNARY_OP = CAST_EXPRESSION_FEATURE_COUNT + 0;
+  int UNARY_EXPRESSION__UNARY_OP = CAST_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Unary Expression</em>' class.
@@ -1981,7 +1990,7 @@ public interface ReflexOldPackage extends EPackage
    * @generated
    * @ordered
    */
-  int UNARY_EXPRESSION_FEATURE_COUNT = CAST_EXPRESSION_FEATURE_COUNT + 1;
+  int UNARY_EXPRESSION_FEATURE_COUNT = CAST_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflexold.reflexOld.impl.InfixOpImpl <em>Infix Op</em>}' class.
@@ -2064,6 +2073,15 @@ public interface ReflexOldPackage extends EPackage
    * @ordered
    */
   int INFIX_OP__TYPE = UNARY_EXPRESSION__TYPE;
+
+  /**
+   * The feature id for the '<em><b>Reference Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INFIX_OP__REFERENCE_OP = UNARY_EXPRESSION__REFERENCE_OP;
 
   /**
    * The feature id for the '<em><b>Unary Op</b></em>' attribute.
@@ -2184,6 +2202,15 @@ public interface ReflexOldPackage extends EPackage
   int POSTFIX_OP__TYPE = UNARY_EXPRESSION__TYPE;
 
   /**
+   * The feature id for the '<em><b>Reference Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POSTFIX_OP__REFERENCE_OP = UNARY_EXPRESSION__REFERENCE_OP;
+
+  /**
    * The feature id for the '<em><b>Unary Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2302,6 +2329,15 @@ public interface ReflexOldPackage extends EPackage
   int FUNCTION_CALL__TYPE = UNARY_EXPRESSION__TYPE;
 
   /**
+   * The feature id for the '<em><b>Reference Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_CALL__REFERENCE_OP = UNARY_EXPRESSION__REFERENCE_OP;
+
+  /**
    * The feature id for the '<em><b>Unary Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2384,13 +2420,22 @@ public interface ReflexOldPackage extends EPackage
   int CHECK_STATE_EXPRESSION__CMP_OP = COMPARE_EXPRESSION__CMP_OP;
 
   /**
+   * The feature id for the '<em><b>Logical Not</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHECK_STATE_EXPRESSION__LOGICAL_NOT = COMPARE_EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Process</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHECK_STATE_EXPRESSION__PROCESS = COMPARE_EXPRESSION_FEATURE_COUNT + 0;
+  int CHECK_STATE_EXPRESSION__PROCESS = COMPARE_EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Qualfier</b></em>' attribute.
@@ -2399,7 +2444,7 @@ public interface ReflexOldPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHECK_STATE_EXPRESSION__QUALFIER = COMPARE_EXPRESSION_FEATURE_COUNT + 1;
+  int CHECK_STATE_EXPRESSION__QUALFIER = COMPARE_EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Check State Expression</em>' class.
@@ -2408,7 +2453,7 @@ public interface ReflexOldPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHECK_STATE_EXPRESSION_FEATURE_COUNT = COMPARE_EXPRESSION_FEATURE_COUNT + 2;
+  int CHECK_STATE_EXPRESSION_FEATURE_COUNT = COMPARE_EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link ru.iaie.reflexold.reflexOld.impl.PrimaryExpressionImpl <em>Primary Expression</em>}' class.
@@ -2491,6 +2536,15 @@ public interface ReflexOldPackage extends EPackage
    * @ordered
    */
   int PRIMARY_EXPRESSION__TYPE = UNARY_EXPRESSION__TYPE;
+
+  /**
+   * The feature id for the '<em><b>Reference Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRIMARY_EXPRESSION__REFERENCE_OP = UNARY_EXPRESSION__REFERENCE_OP;
 
   /**
    * The feature id for the '<em><b>Unary Op</b></em>' attribute.
@@ -3851,6 +3905,17 @@ public interface ReflexOldPackage extends EPackage
   EClass getCheckStateExpression();
 
   /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflexold.reflexOld.CheckStateExpression#isLogicalNot <em>Logical Not</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Logical Not</em>'.
+   * @see ru.iaie.reflexold.reflexOld.CheckStateExpression#isLogicalNot()
+   * @see #getCheckStateExpression()
+   * @generated
+   */
+  EAttribute getCheckStateExpression_LogicalNot();
+
+  /**
    * Returns the meta object for the reference '{@link ru.iaie.reflexold.reflexOld.CheckStateExpression#getProcess <em>Process</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3946,6 +4011,17 @@ public interface ReflexOldPackage extends EPackage
    * @generated
    */
   EClass getUnaryExpression();
+
+  /**
+   * Returns the meta object for the attribute '{@link ru.iaie.reflexold.reflexOld.UnaryExpression#isReferenceOp <em>Reference Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Reference Op</em>'.
+   * @see ru.iaie.reflexold.reflexOld.UnaryExpression#isReferenceOp()
+   * @see #getUnaryExpression()
+   * @generated
+   */
+  EAttribute getUnaryExpression_ReferenceOp();
 
   /**
    * Returns the meta object for the attribute '{@link ru.iaie.reflexold.reflexOld.UnaryExpression#getUnaryOp <em>Unary Op</em>}'.
@@ -5255,6 +5331,14 @@ public interface ReflexOldPackage extends EPackage
     EClass CHECK_STATE_EXPRESSION = eINSTANCE.getCheckStateExpression();
 
     /**
+     * The meta object literal for the '<em><b>Logical Not</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CHECK_STATE_EXPRESSION__LOGICAL_NOT = eINSTANCE.getCheckStateExpression_LogicalNot();
+
+    /**
      * The meta object literal for the '<em><b>Process</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5329,6 +5413,14 @@ public interface ReflexOldPackage extends EPackage
      * @generated
      */
     EClass UNARY_EXPRESSION = eINSTANCE.getUnaryExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Reference Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute UNARY_EXPRESSION__REFERENCE_OP = eINSTANCE.getUnaryExpression_ReferenceOp();
 
     /**
      * The meta object literal for the '<em><b>Unary Op</b></em>' attribute feature.

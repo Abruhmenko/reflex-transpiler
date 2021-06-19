@@ -200,23 +200,25 @@ class ExpressionGenerator {
 	}
 	
 	def translateCheckStateExpression(CheckStateExpression cse) {
+		var s1 = cse.logicalNot? "!(" : ""
+		var s2 = cse.logicalNot? ")" : ""
 		switch (cse.qualfier) {
 			case STOP_EN:
-				return '''process «cse.process.name.toID» in state stop'''
+				return '''«s1»process «cse.process.name.toID» in state stop«s2»'''
 			case STOP_RU:
-				return '''process «cse.process.name.toID» in state stop'''
+				return '''«s1»process «cse.process.name.toID» in state stop«s2»'''
 			case ERROR_EN:
-				return '''process «cse.process.name.toID» in state error'''
+				return '''«s1»process «cse.process.name.toID» in state error«s2»'''
 			case ERROR_RU:
-				return '''process «cse.process.name.toID» in state error'''
+				return '''«s1»process «cse.process.name.toID» in state error«s2»'''
 			case ACTIVE_EN:
-				return '''process «cse.process.name.toID» in state active'''
+				return '''«s1»process «cse.process.name.toID» in state active«s2»'''
 			case ACTIVE_RU:
-				return '''process «cse.process.name.toID» in state active'''
+				return '''«s1»process «cse.process.name.toID» in state active«s2»'''
 			case PASSIVE_EN:
-				return '''process «cse.process.name.toID» in state passive'''
+				return '''«s1»process «cse.process.name.toID» in state passive«s2»'''
 			case PASSIVE_RU:
-				return '''process «cse.process.name.toID» in state passive'''
+				return '''«s1»process «cse.process.name.toID» in state passive«s2»'''
 		}
 	}
 	
@@ -227,7 +229,7 @@ class ExpressionGenerator {
 			PostfixOp:
 				return '''«getMapping(expr.ref)» «expr.op»'''
 			FunctionCall:
-				return '''«expr.function.name»(«String.join(",", expr.args.map[translateExpr])»)'''
+				return '''«expr.function.name»(«String.join(", ", expr.args.map[translateExpr])»)'''
 			IdReference:
 				return '''«getMapping(expr)»'''
 			PrimaryExpression: {
@@ -241,7 +243,7 @@ class ExpressionGenerator {
 				return NodeModelUtils.getNode(expr).text.trim	//TODO: get the type from the PrimaryExpression (ReflexOld.xtext)
 			}
 			UnaryExpression:
-				return '''«expr.unaryOp» «translateExpr(expr.right)»'''
+				return '''«IF !expr.referenceOp»«expr.unaryOp»«ENDIF»«translateExpr(expr.right)»'''
 			CastExpression:
 				return '''(«translateType(expr.type)») «translateExpr(expr.right)»'''
 			MultiplicativeExpression:

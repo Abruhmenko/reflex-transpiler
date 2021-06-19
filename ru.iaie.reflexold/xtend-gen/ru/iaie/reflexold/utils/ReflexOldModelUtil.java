@@ -98,6 +98,11 @@ public class ReflexOldModelUtil {
     return false;
   }
   
+  /**
+   * def static boolean hasLogicalNot(CheckStateExpression cse) {
+   * return cse.logicalNot
+   * }
+   */
   public static List<ProcessVariable> getImportedVariables(final ru.iaie.reflexold.reflexOld.Process p) {
     final Function1<ImportedVariableList, EList<ProcessVariable>> _function = (ImportedVariableList it) -> {
       return it.getVariables();

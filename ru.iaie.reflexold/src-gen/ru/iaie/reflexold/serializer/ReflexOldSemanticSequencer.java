@@ -444,19 +444,10 @@ public class ReflexOldSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns CheckStateExpression
 	 *
 	 * Constraint:
-	 *     (process=[Process|ID] qualfier=StateQualifier)
+	 *     (logicalNot?='!'? process=[Process|ID] qualfier=StateQualifier)
 	 */
 	protected void sequence_CheckStateExpression(ISerializationContext context, CheckStateExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexOldPackage.Literals.CHECK_STATE_EXPRESSION__PROCESS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexOldPackage.Literals.CHECK_STATE_EXPRESSION__PROCESS));
-			if (transientValues.isValueTransient(semanticObject, ReflexOldPackage.Literals.CHECK_STATE_EXPRESSION__QUALFIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexOldPackage.Literals.CHECK_STATE_EXPRESSION__QUALFIER));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCheckStateExpressionAccess().getProcessProcessIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReflexOldPackage.Literals.CHECK_STATE_EXPRESSION__PROCESS, false));
-		feeder.accept(grammarAccess.getCheckStateExpressionAccess().getQualfierStateQualifierEnumRuleCall_3_0(), semanticObject.getQualfier());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -662,7 +653,7 @@ public class ReflexOldSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Function returns Function
 	 *
 	 * Constraint:
-	 *     (returnType=Type name=ID argTypes+=Type argTypes+=Type*)
+	 *     (returnType=Type name=ID (argTypes+=Type argTypes+=Type*)?)
 	 */
 	protected void sequence_Function(ISerializationContext context, Function semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1276,19 +1267,10 @@ public class ReflexOldSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     LogicalOrExpression.LogicalOrExpression_1_0 returns UnaryExpression
 	 *
 	 * Constraint:
-	 *     (unaryOp=UnaryOp right=CastExpression)
+	 *     ((referenceOp?=BIT_AND | unaryOp=UnaryOp) right=CastExpression)
 	 */
 	protected void sequence_UnaryExpression(ISerializationContext context, UnaryExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReflexOldPackage.Literals.UNARY_EXPRESSION__UNARY_OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexOldPackage.Literals.UNARY_EXPRESSION__UNARY_OP));
-			if (transientValues.isValueTransient(semanticObject, ReflexOldPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReflexOldPackage.Literals.LOGICAL_OR_EXPRESSION__RIGHT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getUnaryExpressionAccess().getUnaryOpUnaryOpEnumRuleCall_4_0_0(), semanticObject.getUnaryOp());
-		feeder.accept(grammarAccess.getUnaryExpressionAccess().getRightCastExpressionParserRuleCall_4_1_0(), semanticObject.getRight());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

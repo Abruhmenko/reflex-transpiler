@@ -23,14 +23,16 @@ public class ReflexOldSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ReflexOldGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_CaseStat_CASEKeyword_0_0_or_CyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterUCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterShortIKeyword_0_1;
-	protected AbstractElementAlias match_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1_or_PROCKeyword_0_0;
-	protected AbstractElementAlias match_CheckStateExpression___CyrillicCapitalLetterVeKeyword_2_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1___or___INKeyword_2_0_0_STATEKeyword_2_0_1__;
+	protected AbstractElementAlias match_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1_or_PROCKeyword_1_0;
+	protected AbstractElementAlias match_CheckStateExpression___CyrillicCapitalLetterVeKeyword_3_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1___or___INKeyword_3_0_0_STATEKeyword_3_0_1__;
 	protected AbstractElementAlias match_ClockDefinition_CyrillicCapitalLetterTeCyrillicCapitalLetterACyrillicCapitalLetterKaCyrillicCapitalLetterTeKeyword_0_1_or_TACTKeyword_0_0;
 	protected AbstractElementAlias match_Const_CONSTKeyword_0_0_or_CyrillicCapitalLetterKaCyrillicCapitalLetterOCyrillicCapitalLetterEnCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_0_1;
 	protected AbstractElementAlias match_DefaultStat_CyrillicCapitalLetterUCyrillicCapitalLetterEmCyrillicCapitalLetterOCyrillicCapitalLetterElCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterEnCyrillicCapitalLetterICyrillicCapitalLetterIeKeyword_0_1_or_DEFAULTKeyword_0_0;
 	protected AbstractElementAlias match_Enum_CyrillicCapitalLetterPeCyrillicCapitalLetterIeCyrillicCapitalLetterErCyrillicCapitalLetterIeCyrillicCapitalLetterCheCyrillicCapitalLetterICyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterIeCyrillicCapitalLetterEnCyrillicCapitalLetterICyrillicCapitalLetterIeKeyword_0_1_or_ENUMKeyword_0_0;
 	protected AbstractElementAlias match_ErrorStat_CyrillicCapitalLetterOCyrillicCapitalLetterShaCyrillicCapitalLetterICyrillicCapitalLetterBeCyrillicCapitalLetterKaCyrillicCapitalLetterAKeyword_1_1_or_ERRORKeyword_1_0;
 	protected AbstractElementAlias match_ErrorStat___CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_2_0_1_or_PROCKeyword_2_0_0__q;
+	protected AbstractElementAlias match_Function_AsteriskKeyword_4_1_q;
+	protected AbstractElementAlias match_Function_AsteriskKeyword_4_2_2_q;
 	protected AbstractElementAlias match_Function_CyrillicCapitalLetterEfCyrillicCapitalLetterUCyrillicCapitalLetterEnCyrillicCapitalLetterKaCyrillicCapitalLetterTseCyrillicCapitalLetterICyrillicCapitalLetterYaKeyword_0_1_or_FUNCTIONKeyword_0_0;
 	protected AbstractElementAlias match_IfElseStat_CyrillicCapitalLetterICyrillicCapitalLetterEnCyrillicCapitalLetterACyrillicCapitalLetterCheCyrillicCapitalLetterIeKeyword_5_0_0_1_or_ELSEKeyword_5_0_0_0;
 	protected AbstractElementAlias match_IfElseStat_CyrillicCapitalLetterIeCyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterIKeyword_0_1_or_IFKeyword_0_0;
@@ -56,14 +58,16 @@ public class ReflexOldSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ReflexOldGrammarAccess) access;
 		match_CaseStat_CASEKeyword_0_0_or_CyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterUCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterShortIKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCaseStatAccess().getCASEKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getCaseStatAccess().getCyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterUCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterShortIKeyword_0_1()));
-		match_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1_or_PROCKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getPROCKeyword_0_0()));
-		match_CheckStateExpression___CyrillicCapitalLetterVeKeyword_2_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1___or___INKeyword_2_0_0_STATEKeyword_2_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getCyrillicCapitalLetterVeKeyword_2_1_0()), new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getCyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getINKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getSTATEKeyword_2_0_1())));
+		match_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1_or_PROCKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getPROCKeyword_1_0()));
+		match_CheckStateExpression___CyrillicCapitalLetterVeKeyword_3_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1___or___INKeyword_3_0_0_STATEKeyword_3_0_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getCyrillicCapitalLetterVeKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getCyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getINKeyword_3_0_0()), new TokenAlias(false, false, grammarAccess.getCheckStateExpressionAccess().getSTATEKeyword_3_0_1())));
 		match_ClockDefinition_CyrillicCapitalLetterTeCyrillicCapitalLetterACyrillicCapitalLetterKaCyrillicCapitalLetterTeKeyword_0_1_or_TACTKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getClockDefinitionAccess().getCyrillicCapitalLetterTeCyrillicCapitalLetterACyrillicCapitalLetterKaCyrillicCapitalLetterTeKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getClockDefinitionAccess().getTACTKeyword_0_0()));
 		match_Const_CONSTKeyword_0_0_or_CyrillicCapitalLetterKaCyrillicCapitalLetterOCyrillicCapitalLetterEnCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConstAccess().getCONSTKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getConstAccess().getCyrillicCapitalLetterKaCyrillicCapitalLetterOCyrillicCapitalLetterEnCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_0_1()));
 		match_DefaultStat_CyrillicCapitalLetterUCyrillicCapitalLetterEmCyrillicCapitalLetterOCyrillicCapitalLetterElCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterEnCyrillicCapitalLetterICyrillicCapitalLetterIeKeyword_0_1_or_DEFAULTKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getDefaultStatAccess().getCyrillicCapitalLetterUCyrillicCapitalLetterEmCyrillicCapitalLetterOCyrillicCapitalLetterElCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterEnCyrillicCapitalLetterICyrillicCapitalLetterIeKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getDefaultStatAccess().getDEFAULTKeyword_0_0()));
 		match_Enum_CyrillicCapitalLetterPeCyrillicCapitalLetterIeCyrillicCapitalLetterErCyrillicCapitalLetterIeCyrillicCapitalLetterCheCyrillicCapitalLetterICyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterIeCyrillicCapitalLetterEnCyrillicCapitalLetterICyrillicCapitalLetterIeKeyword_0_1_or_ENUMKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumAccess().getCyrillicCapitalLetterPeCyrillicCapitalLetterIeCyrillicCapitalLetterErCyrillicCapitalLetterIeCyrillicCapitalLetterCheCyrillicCapitalLetterICyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterIeCyrillicCapitalLetterEnCyrillicCapitalLetterICyrillicCapitalLetterIeKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getEnumAccess().getENUMKeyword_0_0()));
 		match_ErrorStat_CyrillicCapitalLetterOCyrillicCapitalLetterShaCyrillicCapitalLetterICyrillicCapitalLetterBeCyrillicCapitalLetterKaCyrillicCapitalLetterAKeyword_1_1_or_ERRORKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getErrorStatAccess().getCyrillicCapitalLetterOCyrillicCapitalLetterShaCyrillicCapitalLetterICyrillicCapitalLetterBeCyrillicCapitalLetterKaCyrillicCapitalLetterAKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getErrorStatAccess().getERRORKeyword_1_0()));
 		match_ErrorStat___CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_2_0_1_or_PROCKeyword_2_0_0__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getErrorStatAccess().getCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_2_0_1()), new TokenAlias(false, false, grammarAccess.getErrorStatAccess().getPROCKeyword_2_0_0()));
+		match_Function_AsteriskKeyword_4_1_q = new TokenAlias(false, true, grammarAccess.getFunctionAccess().getAsteriskKeyword_4_1());
+		match_Function_AsteriskKeyword_4_2_2_q = new TokenAlias(false, true, grammarAccess.getFunctionAccess().getAsteriskKeyword_4_2_2());
 		match_Function_CyrillicCapitalLetterEfCyrillicCapitalLetterUCyrillicCapitalLetterEnCyrillicCapitalLetterKaCyrillicCapitalLetterTseCyrillicCapitalLetterICyrillicCapitalLetterYaKeyword_0_1_or_FUNCTIONKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionAccess().getCyrillicCapitalLetterEfCyrillicCapitalLetterUCyrillicCapitalLetterEnCyrillicCapitalLetterKaCyrillicCapitalLetterTseCyrillicCapitalLetterICyrillicCapitalLetterYaKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getFunctionAccess().getFUNCTIONKeyword_0_0()));
 		match_IfElseStat_CyrillicCapitalLetterICyrillicCapitalLetterEnCyrillicCapitalLetterACyrillicCapitalLetterCheCyrillicCapitalLetterIeKeyword_5_0_0_1_or_ELSEKeyword_5_0_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getIfElseStatAccess().getCyrillicCapitalLetterICyrillicCapitalLetterEnCyrillicCapitalLetterACyrillicCapitalLetterCheCyrillicCapitalLetterIeKeyword_5_0_0_1()), new TokenAlias(false, false, grammarAccess.getIfElseStatAccess().getELSEKeyword_5_0_0_0()));
 		match_IfElseStat_CyrillicCapitalLetterIeCyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterIKeyword_0_1_or_IFKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getIfElseStatAccess().getCyrillicCapitalLetterIeCyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterIKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getIfElseStatAccess().getIFKeyword_0_0()));
@@ -171,10 +175,10 @@ public class ReflexOldSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_CaseStat_CASEKeyword_0_0_or_CyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterUCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterShortIKeyword_0_1.equals(syntax))
 				emit_CaseStat_CASEKeyword_0_0_or_CyrillicCapitalLetterEsCyrillicCapitalLetterElCyrillicCapitalLetterUCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterShortIKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1_or_PROCKeyword_0_0.equals(syntax))
-				emit_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1_or_PROCKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_CheckStateExpression___CyrillicCapitalLetterVeKeyword_2_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1___or___INKeyword_2_0_0_STATEKeyword_2_0_1__.equals(syntax))
-				emit_CheckStateExpression___CyrillicCapitalLetterVeKeyword_2_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1___or___INKeyword_2_0_0_STATEKeyword_2_0_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1_or_PROCKeyword_1_0.equals(syntax))
+				emit_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1_or_PROCKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_CheckStateExpression___CyrillicCapitalLetterVeKeyword_3_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1___or___INKeyword_3_0_0_STATEKeyword_3_0_1__.equals(syntax))
+				emit_CheckStateExpression___CyrillicCapitalLetterVeKeyword_3_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1___or___INKeyword_3_0_0_STATEKeyword_3_0_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ClockDefinition_CyrillicCapitalLetterTeCyrillicCapitalLetterACyrillicCapitalLetterKaCyrillicCapitalLetterTeKeyword_0_1_or_TACTKeyword_0_0.equals(syntax))
 				emit_ClockDefinition_CyrillicCapitalLetterTeCyrillicCapitalLetterACyrillicCapitalLetterKaCyrillicCapitalLetterTeKeyword_0_1_or_TACTKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Const_CONSTKeyword_0_0_or_CyrillicCapitalLetterKaCyrillicCapitalLetterOCyrillicCapitalLetterEnCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_0_1.equals(syntax))
@@ -187,6 +191,10 @@ public class ReflexOldSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ErrorStat_CyrillicCapitalLetterOCyrillicCapitalLetterShaCyrillicCapitalLetterICyrillicCapitalLetterBeCyrillicCapitalLetterKaCyrillicCapitalLetterAKeyword_1_1_or_ERRORKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ErrorStat___CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_2_0_1_or_PROCKeyword_2_0_0__q.equals(syntax))
 				emit_ErrorStat___CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_2_0_1_or_PROCKeyword_2_0_0__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Function_AsteriskKeyword_4_1_q.equals(syntax))
+				emit_Function_AsteriskKeyword_4_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Function_AsteriskKeyword_4_2_2_q.equals(syntax))
+				emit_Function_AsteriskKeyword_4_2_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Function_CyrillicCapitalLetterEfCyrillicCapitalLetterUCyrillicCapitalLetterEnCyrillicCapitalLetterKaCyrillicCapitalLetterTseCyrillicCapitalLetterICyrillicCapitalLetterYaKeyword_0_1_or_FUNCTIONKeyword_0_0.equals(syntax))
 				emit_Function_CyrillicCapitalLetterEfCyrillicCapitalLetterUCyrillicCapitalLetterEnCyrillicCapitalLetterKaCyrillicCapitalLetterTseCyrillicCapitalLetterICyrillicCapitalLetterYaKeyword_0_1_or_FUNCTIONKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_IfElseStat_CyrillicCapitalLetterICyrillicCapitalLetterEnCyrillicCapitalLetterACyrillicCapitalLetterCheCyrillicCapitalLetterIeKeyword_5_0_0_1_or_ELSEKeyword_5_0_0_0.equals(syntax))
@@ -248,8 +256,9 @@ public class ReflexOldSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) process=[Process|ID]
+	 *     logicalNot?='!' (ambiguity) process=[Process|ID]
 	 */
-	protected void emit_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1_or_PROCKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_CheckStateExpression_CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1_or_PROCKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -260,7 +269,7 @@ public class ReflexOldSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     process=[Process|ID] (ambiguity) qualfier=StateQualifier
 	 */
-	protected void emit_CheckStateExpression___CyrillicCapitalLetterVeKeyword_2_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1___or___INKeyword_2_0_0_STATEKeyword_2_0_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_CheckStateExpression___CyrillicCapitalLetterVeKeyword_3_1_0_CyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1___or___INKeyword_3_0_0_STATEKeyword_3_0_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -291,9 +300,9 @@ public class ReflexOldSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'DEFAULT' | '”ÃŒÀ◊¿Õ»≈'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ':' '{' '}' (rule start)
-	 *     (rule start) (ambiguity) ':' '{' hasBreak?=BreakStat
-	 *     (rule start) (ambiguity) ':' '{' statements+=Statement
+	 *     (rule start) (ambiguity) ':' (rule start)
+	 *     (rule start) (ambiguity) ':' hasBreak?=BreakStat
+	 *     (rule start) (ambiguity) ':' statements+=Statement
 	 */
 	protected void emit_DefaultStat_CyrillicCapitalLetterUCyrillicCapitalLetterEmCyrillicCapitalLetterOCyrillicCapitalLetterElCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterEnCyrillicCapitalLetterICyrillicCapitalLetterIeKeyword_0_1_or_DEFAULTKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -330,6 +339,30 @@ public class ReflexOldSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) ('ERROR' | 'Œÿ»¡ ¿') (ambiguity) process=[Process|ID]
 	 */
 	protected void emit_ErrorStat___CyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_2_0_1_or_PROCKeyword_2_0_0__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '*'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     argTypes+=Type (ambiguity) ')' ';' (rule end)
+	 *     argTypes+=Type (ambiguity) ',' argTypes+=Type
+	 */
+	protected void emit_Function_AsteriskKeyword_4_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '*'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     argTypes+=Type (ambiguity) ')' ';' (rule end)
+	 *     argTypes+=Type (ambiguity) ',' argTypes+=Type
+	 */
+	protected void emit_Function_AsteriskKeyword_4_2_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

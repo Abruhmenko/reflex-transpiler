@@ -308,64 +308,96 @@ public class ExpressionGenerator {
   }
   
   public String translateCheckStateExpression(final CheckStateExpression cse) {
+    String _xifexpression = null;
+    boolean _isLogicalNot = cse.isLogicalNot();
+    if (_isLogicalNot) {
+      _xifexpression = "!(";
+    } else {
+      _xifexpression = "";
+    }
+    String s1 = _xifexpression;
+    String _xifexpression_1 = null;
+    boolean _isLogicalNot_1 = cse.isLogicalNot();
+    if (_isLogicalNot_1) {
+      _xifexpression_1 = ")";
+    } else {
+      _xifexpression_1 = "";
+    }
+    String s2 = _xifexpression_1;
     StateQualifier _qualfier = cse.getQualfier();
     if (_qualfier != null) {
       switch (_qualfier) {
         case STOP_EN:
           StringConcatenation _builder = new StringConcatenation();
+          _builder.append(s1);
           _builder.append("process ");
           String _iD = this.toID(cse.getProcess().getName());
           _builder.append(_iD);
           _builder.append(" in state stop");
+          _builder.append(s2);
           return _builder.toString();
         case STOP_RU:
           StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append(s1);
           _builder_1.append("process ");
           String _iD_1 = this.toID(cse.getProcess().getName());
           _builder_1.append(_iD_1);
           _builder_1.append(" in state stop");
+          _builder_1.append(s2);
           return _builder_1.toString();
         case ERROR_EN:
           StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append(s1);
           _builder_2.append("process ");
           String _iD_2 = this.toID(cse.getProcess().getName());
           _builder_2.append(_iD_2);
           _builder_2.append(" in state error");
+          _builder_2.append(s2);
           return _builder_2.toString();
         case ERROR_RU:
           StringConcatenation _builder_3 = new StringConcatenation();
+          _builder_3.append(s1);
           _builder_3.append("process ");
           String _iD_3 = this.toID(cse.getProcess().getName());
           _builder_3.append(_iD_3);
           _builder_3.append(" in state error");
+          _builder_3.append(s2);
           return _builder_3.toString();
         case ACTIVE_EN:
           StringConcatenation _builder_4 = new StringConcatenation();
+          _builder_4.append(s1);
           _builder_4.append("process ");
           String _iD_4 = this.toID(cse.getProcess().getName());
           _builder_4.append(_iD_4);
           _builder_4.append(" in state active");
+          _builder_4.append(s2);
           return _builder_4.toString();
         case ACTIVE_RU:
           StringConcatenation _builder_5 = new StringConcatenation();
+          _builder_5.append(s1);
           _builder_5.append("process ");
           String _iD_5 = this.toID(cse.getProcess().getName());
           _builder_5.append(_iD_5);
           _builder_5.append(" in state active");
+          _builder_5.append(s2);
           return _builder_5.toString();
         case PASSIVE_EN:
           StringConcatenation _builder_6 = new StringConcatenation();
+          _builder_6.append(s1);
           _builder_6.append("process ");
           String _iD_6 = this.toID(cse.getProcess().getName());
           _builder_6.append(_iD_6);
           _builder_6.append(" in state passive");
+          _builder_6.append(s2);
           return _builder_6.toString();
         case PASSIVE_RU:
           StringConcatenation _builder_7 = new StringConcatenation();
+          _builder_7.append(s1);
           _builder_7.append("process ");
           String _iD_7 = this.toID(cse.getProcess().getName());
           _builder_7.append(_iD_7);
           _builder_7.append(" in state passive");
+          _builder_7.append(s2);
           return _builder_7.toString();
         default:
           break;
@@ -408,7 +440,7 @@ public class ExpressionGenerator {
         final Function1<Expression, String> _function = (Expression it) -> {
           return this.translateExpr(it);
         };
-        String _join = String.join(",", ListExtensions.<Expression, String>map(((FunctionCall)expr).getArgs(), _function));
+        String _join = String.join(", ", ListExtensions.<Expression, String>map(((FunctionCall)expr).getArgs(), _function));
         _builder.append(_join);
         _builder.append(")");
         return _builder.toString();
@@ -450,9 +482,14 @@ public class ExpressionGenerator {
       if (expr instanceof UnaryExpression) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        UnaryOp _unaryOp = ((UnaryExpression)expr).getUnaryOp();
-        _builder.append(_unaryOp);
-        _builder.append(" ");
+        {
+          boolean _isReferenceOp = ((UnaryExpression)expr).isReferenceOp();
+          boolean _not = (!_isReferenceOp);
+          if (_not) {
+            UnaryOp _unaryOp = ((UnaryExpression)expr).getUnaryOp();
+            _builder.append(_unaryOp);
+          }
+        }
         String _translateExpr = this.translateExpr(((UnaryExpression)expr).getRight());
         _builder.append(_translateExpr);
         return _builder.toString();

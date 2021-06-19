@@ -1740,9 +1740,20 @@ public class ReflexOldPackageImpl extends EPackageImpl implements ReflexOldPacka
    * @generated
    */
   @Override
+  public EAttribute getCheckStateExpression_LogicalNot()
+  {
+    return (EAttribute)checkStateExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getCheckStateExpression_Process()
   {
-    return (EReference)checkStateExpressionEClass.getEStructuralFeatures().get(0);
+    return (EReference)checkStateExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1753,7 +1764,7 @@ public class ReflexOldPackageImpl extends EPackageImpl implements ReflexOldPacka
   @Override
   public EAttribute getCheckStateExpression_Qualfier()
   {
-    return (EAttribute)checkStateExpressionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)checkStateExpressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1839,9 +1850,20 @@ public class ReflexOldPackageImpl extends EPackageImpl implements ReflexOldPacka
    * @generated
    */
   @Override
-  public EAttribute getUnaryExpression_UnaryOp()
+  public EAttribute getUnaryExpression_ReferenceOp()
   {
     return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getUnaryExpression_UnaryOp()
+  {
+    return (EAttribute)unaryExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2400,6 +2422,7 @@ public class ReflexOldPackageImpl extends EPackageImpl implements ReflexOldPacka
     createEReference(functionCallEClass, FUNCTION_CALL__ARGS);
 
     checkStateExpressionEClass = createEClass(CHECK_STATE_EXPRESSION);
+    createEAttribute(checkStateExpressionEClass, CHECK_STATE_EXPRESSION__LOGICAL_NOT);
     createEReference(checkStateExpressionEClass, CHECK_STATE_EXPRESSION__PROCESS);
     createEAttribute(checkStateExpressionEClass, CHECK_STATE_EXPRESSION__QUALFIER);
 
@@ -2411,6 +2434,7 @@ public class ReflexOldPackageImpl extends EPackageImpl implements ReflexOldPacka
     createEReference(primaryExpressionEClass, PRIMARY_EXPRESSION__NESTED_EXPR);
 
     unaryExpressionEClass = createEClass(UNARY_EXPRESSION);
+    createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__REFERENCE_OP);
     createEAttribute(unaryExpressionEClass, UNARY_EXPRESSION__UNARY_OP);
 
     castExpressionEClass = createEClass(CAST_EXPRESSION);
@@ -2672,6 +2696,7 @@ public class ReflexOldPackageImpl extends EPackageImpl implements ReflexOldPacka
     initEReference(getFunctionCall_Args(), this.getExpression(), null, "args", null, 0, -1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(checkStateExpressionEClass, CheckStateExpression.class, "CheckStateExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCheckStateExpression_LogicalNot(), ecorePackage.getEBoolean(), "logicalNot", null, 0, 1, CheckStateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCheckStateExpression_Process(), this.getProcess(), null, "process", null, 0, 1, CheckStateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCheckStateExpression_Qualfier(), this.getStateQualifier(), "qualfier", null, 0, 1, CheckStateExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2683,6 +2708,7 @@ public class ReflexOldPackageImpl extends EPackageImpl implements ReflexOldPacka
     initEReference(getPrimaryExpression_NestedExpr(), this.getExpression(), null, "nestedExpr", null, 0, 1, PrimaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unaryExpressionEClass, UnaryExpression.class, "UnaryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUnaryExpression_ReferenceOp(), ecorePackage.getEBoolean(), "referenceOp", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getUnaryExpression_UnaryOp(), this.getUnaryOp(), "unaryOp", null, 0, 1, UnaryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(castExpressionEClass, CastExpression.class, "CastExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

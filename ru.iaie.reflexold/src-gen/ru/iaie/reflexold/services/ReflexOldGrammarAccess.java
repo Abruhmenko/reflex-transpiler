@@ -196,13 +196,13 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//Process:
 		//    ("PROC" | "œ–Œ÷") name=ID "{"
-		//    ((imports+=ImportedVariableList | variables+=ProcessVariable) ";")* // imports+=ImportedVariableList
+		//    ((imports+=ImportedVariableList | variables+=ProcessVariable) ";")*
 		//    states+=State*
 		//    "}";
 		@Override public ParserRule getRule() { return rule; }
 		
 		//("PROC" | "œ–Œ÷") name=ID "{"
-		//((imports+=ImportedVariableList | variables+=ProcessVariable) ";")* // imports+=ImportedVariableList
+		//((imports+=ImportedVariableList | variables+=ProcessVariable) ";")*
 		//states+=State*
 		//"}"
 		public Group getGroup() { return cGroup; }
@@ -246,8 +246,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//";"
 		public Keyword getSemicolonKeyword_3_1() { return cSemicolonKeyword_3_1; }
 		
-		//// imports+=ImportedVariableList
-		//   states+=State*
+		//states+=State*
 		public Assignment getStatesAssignment_4() { return cStatesAssignment_4; }
 		
 		//State
@@ -435,7 +434,6 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final CrossReference cProcessesProcessCrossReference_1_1_1_1_2_1_0 = (CrossReference)cProcessesAssignment_1_1_1_1_2_1.eContents().get(0);
 		private final RuleCall cProcessesProcessIDTerminalRuleCall_1_1_1_1_2_1_0_1 = (RuleCall)cProcessesProcessCrossReference_1_1_1_1_2_1_0.eContents().get(1);
 		
-		// // ProcessVariable
 		//ProcessVariable:
 		//    (PhysicalVariable | ProgramVariable)
 		//    (
@@ -575,18 +573,6 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cMappingAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cMappingPortMappingParserRuleCall_3_0 = (RuleCall)cMappingAssignment_3.eContents().get(0);
 		
-		///*
-		//ProcessVariable:
-		//    (PhysicalVariable | ProgramVariable) (accessibility=VariableAccessibility)?;
-		//VariableAccessibility:
-		//    local?=("LOCAL" | "ÀŒ ¿À") |
-		//    (shared?=("FOR" | "ƒÀﬂ")
-		//        (
-		//            ("ALL" | "¬—≈’") |
-		//            ((("PROC") | ("œ–Œ÷")) processes+=[Process] ("," processes+=[Process])*)
-		//        )
-		//    );
-		//*/
 		//PhysicalVariable:
 		//    type=Type name=ID "=" mapping=PortMapping;
 		@Override public ParserRule getRule() { return rule; }
@@ -841,20 +827,23 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cArgTypesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cArgTypesTypeEnumRuleCall_4_0 = (RuleCall)cArgTypesAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cArgTypesAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cArgTypesTypeEnumRuleCall_5_1_0 = (RuleCall)cArgTypesAssignment_5_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cArgTypesAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final RuleCall cArgTypesTypeEnumRuleCall_4_0_0 = (RuleCall)cArgTypesAssignment_4_0.eContents().get(0);
+		private final Keyword cAsteriskKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
+		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
+		private final Assignment cArgTypesAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final RuleCall cArgTypesTypeEnumRuleCall_4_2_1_0 = (RuleCall)cArgTypesAssignment_4_2_1.eContents().get(0);
+		private final Keyword cAsteriskKeyword_4_2_2 = (Keyword)cGroup_4_2.eContents().get(2);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Function:
-		//    ("FUNCTION" | "‘”Õ ÷»ﬂ") returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
+		//    ("FUNCTION" | "‘”Õ ÷»ﬂ") returnType=Type name=ID "(" (argTypes+=Type "*"? ("," argTypes+=Type "*"?)*)? ")" ";";
 		@Override public ParserRule getRule() { return rule; }
 		
-		//("FUNCTION" | "‘”Õ ÷»ﬂ") returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";"
+		//("FUNCTION" | "‘”Õ ÷»ﬂ") returnType=Type name=ID "(" (argTypes+=Type "*"? ("," argTypes+=Type "*"?)*)? ")" ";"
 		public Group getGroup() { return cGroup; }
 		
 		//("FUNCTION" | "‘”Õ ÷»ﬂ")
@@ -881,29 +870,38 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//"("
 		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 		
+		//(argTypes+=Type "*"? ("," argTypes+=Type "*"?)*)?
+		public Group getGroup_4() { return cGroup_4; }
+		
 		//argTypes+=Type
-		public Assignment getArgTypesAssignment_4() { return cArgTypesAssignment_4; }
+		public Assignment getArgTypesAssignment_4_0() { return cArgTypesAssignment_4_0; }
 		
 		//Type
-		public RuleCall getArgTypesTypeEnumRuleCall_4_0() { return cArgTypesTypeEnumRuleCall_4_0; }
+		public RuleCall getArgTypesTypeEnumRuleCall_4_0_0() { return cArgTypesTypeEnumRuleCall_4_0_0; }
 		
-		//("," argTypes+=Type)*
-		public Group getGroup_5() { return cGroup_5; }
+		//"*"?
+		public Keyword getAsteriskKeyword_4_1() { return cAsteriskKeyword_4_1; }
+		
+		//("," argTypes+=Type "*"?)*
+		public Group getGroup_4_2() { return cGroup_4_2; }
 		
 		//","
-		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
+		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
 		
 		//argTypes+=Type
-		public Assignment getArgTypesAssignment_5_1() { return cArgTypesAssignment_5_1; }
+		public Assignment getArgTypesAssignment_4_2_1() { return cArgTypesAssignment_4_2_1; }
 		
 		//Type
-		public RuleCall getArgTypesTypeEnumRuleCall_5_1_0() { return cArgTypesTypeEnumRuleCall_5_1_0; }
+		public RuleCall getArgTypesTypeEnumRuleCall_4_2_1_0() { return cArgTypesTypeEnumRuleCall_4_2_1_0; }
+		
+		//"*"?
+		public Keyword getAsteriskKeyword_4_2_2() { return cAsteriskKeyword_4_2_2; }
 		
 		//")"
-		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 		
 		//";"
-		public Keyword getSemicolonKeyword_7() { return cSemicolonKeyword_7; }
+		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
 	}
 	public class ConstElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflexold.ReflexOld.Const");
@@ -1333,15 +1331,13 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cOptionAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOptionExpressionParserRuleCall_1_0 = (RuleCall)cOptionAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final RuleCall cSwitchOptionStatSequenceParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cSwitchOptionStatSequenceParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//CaseStat:
-		//    ("CASE" | "—À”◊¿…") option=Expression ":" "{" SwitchOptionStatSequence "}";
+		//    ("CASE" | "—À”◊¿…") option=Expression ":" SwitchOptionStatSequence;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//("CASE" | "—À”◊¿…") option=Expression ":" "{" SwitchOptionStatSequence "}"
+		//("CASE" | "—À”◊¿…") option=Expression ":" SwitchOptionStatSequence
 		public Group getGroup() { return cGroup; }
 		
 		//("CASE" | "—À”◊¿…")
@@ -1362,14 +1358,8 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
-		
 		//SwitchOptionStatSequence
-		public RuleCall getSwitchOptionStatSequenceParserRuleCall_4() { return cSwitchOptionStatSequenceParserRuleCall_4; }
-		
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public RuleCall getSwitchOptionStatSequenceParserRuleCall_3() { return cSwitchOptionStatSequenceParserRuleCall_3; }
 	}
 	public class DefaultStatElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflexold.ReflexOld.DefaultStat");
@@ -1378,15 +1368,14 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cDEFAULTKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
 		private final Keyword cCyrillicCapitalLetterUCyrillicCapitalLetterEmCyrillicCapitalLetterOCyrillicCapitalLetterElCyrillicCapitalLetterCheCyrillicCapitalLetterACyrillicCapitalLetterEnCyrillicCapitalLetterICyrillicCapitalLetterIeKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final RuleCall cSwitchOptionStatSequenceParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cSwitchOptionStatSequenceParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
+		//   // "{" SwitchOptionStatSequence "}"
 		//DefaultStat:
-		//    ("DEFAULT" | "”ÃŒÀ◊¿Õ»≈") ":" "{" SwitchOptionStatSequence "}";
+		//    ("DEFAULT" | "”ÃŒÀ◊¿Õ»≈") ":" SwitchOptionStatSequence;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//("DEFAULT" | "”ÃŒÀ◊¿Õ»≈") ":" "{" SwitchOptionStatSequence "}"
+		//("DEFAULT" | "”ÃŒÀ◊¿Õ»≈") ":" SwitchOptionStatSequence
 		public Group getGroup() { return cGroup; }
 		
 		//("DEFAULT" | "”ÃŒÀ◊¿Õ»≈")
@@ -1401,14 +1390,8 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 		
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-		
 		//SwitchOptionStatSequence
-		public RuleCall getSwitchOptionStatSequenceParserRuleCall_3() { return cSwitchOptionStatSequenceParserRuleCall_3; }
-		
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public RuleCall getSwitchOptionStatSequenceParserRuleCall_2() { return cSwitchOptionStatSequenceParserRuleCall_2; }
 	}
 	public class SwitchOptionStatSequenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflexold.ReflexOld.SwitchOptionStatSequence");
@@ -1418,6 +1401,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cHasBreakAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cHasBreakBreakStatParserRuleCall_1_0 = (RuleCall)cHasBreakAssignment_1.eContents().get(0);
 		
+		//   // "{" SwitchOptionStatSequence "}"
 		//fragment SwitchOptionStatSequence:
 		//    statements+=Statement* hasBreak?=BreakStat?;
 		@Override public ParserRule getRule() { return rule; }
@@ -1991,73 +1975,81 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 	public class CheckStateExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflexold.ReflexOld.CheckStateExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Keyword cPROCKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
-		private final Keyword cCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
-		private final Assignment cProcessAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cProcessProcessCrossReference_1_0 = (CrossReference)cProcessAssignment_1.eContents().get(0);
-		private final RuleCall cProcessProcessIDTerminalRuleCall_1_0_1 = (RuleCall)cProcessProcessCrossReference_1_0.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Keyword cINKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Keyword cSTATEKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Keyword cCyrillicCapitalLetterVeKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
-		private final Keyword cCyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1 = (Keyword)cGroup_2_1.eContents().get(1);
-		private final Assignment cQualfierAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cQualfierStateQualifierEnumRuleCall_3_0 = (RuleCall)cQualfierAssignment_3.eContents().get(0);
+		private final Assignment cLogicalNotAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cLogicalNotExclamationMarkKeyword_0_0 = (Keyword)cLogicalNotAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Keyword cPROCKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
+		private final Keyword cCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		private final Assignment cProcessAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cProcessProcessCrossReference_2_0 = (CrossReference)cProcessAssignment_2.eContents().get(0);
+		private final RuleCall cProcessProcessIDTerminalRuleCall_2_0_1 = (RuleCall)cProcessProcessCrossReference_2_0.eContents().get(1);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
+		private final Keyword cINKeyword_3_0_0 = (Keyword)cGroup_3_0.eContents().get(0);
+		private final Keyword cSTATEKeyword_3_0_1 = (Keyword)cGroup_3_0.eContents().get(1);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Keyword cCyrillicCapitalLetterVeKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Keyword cCyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
+		private final Assignment cQualfierAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cQualfierStateQualifierEnumRuleCall_4_0 = (RuleCall)cQualfierAssignment_4.eContents().get(0);
 		
 		//CheckStateExpression:
-		//    ("PROC" | "œ–Œ÷") process=[Process] (("IN" "STATE") | ("¬" "—Œ—“")) qualfier=StateQualifier;
+		//    (logicalNot?="!")? ("PROC" | "œ–Œ÷") process=[Process] (("IN" "STATE") | ("¬" "—Œ—“")) qualfier=StateQualifier;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//("PROC" | "œ–Œ÷") process=[Process] (("IN" "STATE") | ("¬" "—Œ—“")) qualfier=StateQualifier
+		//(logicalNot?="!")? ("PROC" | "œ–Œ÷") process=[Process] (("IN" "STATE") | ("¬" "—Œ—“")) qualfier=StateQualifier
 		public Group getGroup() { return cGroup; }
 		
+		//(logicalNot?="!")?
+		public Assignment getLogicalNotAssignment_0() { return cLogicalNotAssignment_0; }
+		
+		//"!"
+		public Keyword getLogicalNotExclamationMarkKeyword_0_0() { return cLogicalNotExclamationMarkKeyword_0_0; }
+		
 		//("PROC" | "œ–Œ÷")
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//"PROC"
-		public Keyword getPROCKeyword_0_0() { return cPROCKeyword_0_0; }
+		public Keyword getPROCKeyword_1_0() { return cPROCKeyword_1_0; }
 		
 		//"œ–Œ÷"
-		public Keyword getCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1() { return cCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_0_1; }
+		public Keyword getCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1() { return cCyrillicCapitalLetterPeCyrillicCapitalLetterErCyrillicCapitalLetterOCyrillicCapitalLetterTseKeyword_1_1; }
 		
 		//process=[Process]
-		public Assignment getProcessAssignment_1() { return cProcessAssignment_1; }
+		public Assignment getProcessAssignment_2() { return cProcessAssignment_2; }
 		
 		//[Process]
-		public CrossReference getProcessProcessCrossReference_1_0() { return cProcessProcessCrossReference_1_0; }
+		public CrossReference getProcessProcessCrossReference_2_0() { return cProcessProcessCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getProcessProcessIDTerminalRuleCall_1_0_1() { return cProcessProcessIDTerminalRuleCall_1_0_1; }
+		public RuleCall getProcessProcessIDTerminalRuleCall_2_0_1() { return cProcessProcessIDTerminalRuleCall_2_0_1; }
 		
 		//(("IN" "STATE") | ("¬" "—Œ—“"))
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//("IN" "STATE")
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		public Group getGroup_3_0() { return cGroup_3_0; }
 		
 		//"IN"
-		public Keyword getINKeyword_2_0_0() { return cINKeyword_2_0_0; }
+		public Keyword getINKeyword_3_0_0() { return cINKeyword_3_0_0; }
 		
 		//"STATE"
-		public Keyword getSTATEKeyword_2_0_1() { return cSTATEKeyword_2_0_1; }
+		public Keyword getSTATEKeyword_3_0_1() { return cSTATEKeyword_3_0_1; }
 		
 		//("¬" "—Œ—“")
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		public Group getGroup_3_1() { return cGroup_3_1; }
 		
 		//"¬"
-		public Keyword getCyrillicCapitalLetterVeKeyword_2_1_0() { return cCyrillicCapitalLetterVeKeyword_2_1_0; }
+		public Keyword getCyrillicCapitalLetterVeKeyword_3_1_0() { return cCyrillicCapitalLetterVeKeyword_3_1_0; }
 		
 		//"—Œ—“"
-		public Keyword getCyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1() { return cCyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_2_1_1; }
+		public Keyword getCyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1() { return cCyrillicCapitalLetterEsCyrillicCapitalLetterOCyrillicCapitalLetterEsCyrillicCapitalLetterTeKeyword_3_1_1; }
 		
 		//qualfier=StateQualifier
-		public Assignment getQualfierAssignment_3() { return cQualfierAssignment_3; }
+		public Assignment getQualfierAssignment_4() { return cQualfierAssignment_4; }
 		
 		//StateQualifier
-		public RuleCall getQualfierStateQualifierEnumRuleCall_3_0() { return cQualfierStateQualifierEnumRuleCall_3_0; }
+		public RuleCall getQualfierStateQualifierEnumRuleCall_4_0() { return cQualfierStateQualifierEnumRuleCall_4_0; }
 	}
 	public class PrimaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ru.iaie.reflexold.ReflexOld.PrimaryExpression");
@@ -2166,8 +2158,11 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cPostfixOpParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cInfixOpParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Assignment cUnaryOpAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cUnaryOpUnaryOpEnumRuleCall_4_0_0 = (RuleCall)cUnaryOpAssignment_4_0.eContents().get(0);
+		private final Alternatives cAlternatives_4_0 = (Alternatives)cGroup_4.eContents().get(0);
+		private final Assignment cReferenceOpAssignment_4_0_0 = (Assignment)cAlternatives_4_0.eContents().get(0);
+		private final RuleCall cReferenceOpBIT_ANDTerminalRuleCall_4_0_0_0 = (RuleCall)cReferenceOpAssignment_4_0_0.eContents().get(0);
+		private final Assignment cUnaryOpAssignment_4_0_1 = (Assignment)cAlternatives_4_0.eContents().get(1);
+		private final RuleCall cUnaryOpUnaryOpEnumRuleCall_4_0_1_0 = (RuleCall)cUnaryOpAssignment_4_0_1.eContents().get(0);
 		private final Assignment cRightAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cRightCastExpressionParserRuleCall_4_1_0 = (RuleCall)cRightAssignment_4_1.eContents().get(0);
 		
@@ -2176,14 +2171,14 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    FunctionCall |
 		//    PostfixOp |
 		//    InfixOp |
-		//    unaryOp=UnaryOp right=CastExpression;
+		//    (referenceOp?=BIT_AND | unaryOp=UnaryOp) right=CastExpression;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//PrimaryExpression |
 		//FunctionCall |
 		//PostfixOp |
 		//InfixOp |
-		//unaryOp=UnaryOp right=CastExpression
+		//(referenceOp?=BIT_AND | unaryOp=UnaryOp) right=CastExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//PrimaryExpression
@@ -2198,14 +2193,23 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//InfixOp
 		public RuleCall getInfixOpParserRuleCall_3() { return cInfixOpParserRuleCall_3; }
 		
-		//unaryOp=UnaryOp right=CastExpression
+		//(referenceOp?=BIT_AND | unaryOp=UnaryOp) right=CastExpression
 		public Group getGroup_4() { return cGroup_4; }
 		
+		//(referenceOp?=BIT_AND | unaryOp=UnaryOp)
+		public Alternatives getAlternatives_4_0() { return cAlternatives_4_0; }
+		
+		//referenceOp?=BIT_AND
+		public Assignment getReferenceOpAssignment_4_0_0() { return cReferenceOpAssignment_4_0_0; }
+		
+		//BIT_AND
+		public RuleCall getReferenceOpBIT_ANDTerminalRuleCall_4_0_0_0() { return cReferenceOpBIT_ANDTerminalRuleCall_4_0_0_0; }
+		
 		//unaryOp=UnaryOp
-		public Assignment getUnaryOpAssignment_4_0() { return cUnaryOpAssignment_4_0; }
+		public Assignment getUnaryOpAssignment_4_0_1() { return cUnaryOpAssignment_4_0_1; }
 		
 		//UnaryOp
-		public RuleCall getUnaryOpUnaryOpEnumRuleCall_4_0_0() { return cUnaryOpUnaryOpEnumRuleCall_4_0_0; }
+		public RuleCall getUnaryOpUnaryOpEnumRuleCall_4_0_1_0() { return cUnaryOpUnaryOpEnumRuleCall_4_0_1_0; }
 		
 		//right=CastExpression
 		public Assignment getRightAssignment_4_1() { return cRightAssignment_4_1; }
@@ -3572,7 +3576,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	//Process:
 	//    ("PROC" | "œ–Œ÷") name=ID "{"
-	//    ((imports+=ImportedVariableList | variables+=ProcessVariable) ";")* // imports+=ImportedVariableList
+	//    ((imports+=ImportedVariableList | variables+=ProcessVariable) ";")*
 	//    states+=State*
 	//    "}";
 	public ProcessElements getProcessAccess() {
@@ -3607,7 +3611,6 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getImportedVariableListAccess().getRule();
 	}
 	
-	// // ProcessVariable
 	//ProcessVariable:
 	//    (PhysicalVariable | ProgramVariable)
 	//    (
@@ -3627,18 +3630,6 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getProcessVariableAccess().getRule();
 	}
 	
-	///*
-	//ProcessVariable:
-	//    (PhysicalVariable | ProgramVariable) (accessibility=VariableAccessibility)?;
-	//VariableAccessibility:
-	//    local?=("LOCAL" | "ÀŒ ¿À") |
-	//    (shared?=("FOR" | "ƒÀﬂ")
-	//        (
-	//            ("ALL" | "¬—≈’") |
-	//            ((("PROC") | ("œ–Œ÷")) processes+=[Process] ("," processes+=[Process])*)
-	//        )
-	//    );
-	//*/
 	//PhysicalVariable:
 	//    type=Type name=ID "=" mapping=PortMapping;
 	public PhysicalVariableElements getPhysicalVariableAccess() {
@@ -3711,7 +3702,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//Function:
-	//    ("FUNCTION" | "‘”Õ ÷»ﬂ") returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
+	//    ("FUNCTION" | "‘”Õ ÷»ﬂ") returnType=Type name=ID "(" (argTypes+=Type "*"? ("," argTypes+=Type "*"?)*)? ")" ";";
 	public FunctionElements getFunctionAccess() {
 		return pFunction;
 	}
@@ -3809,7 +3800,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//CaseStat:
-	//    ("CASE" | "—À”◊¿…") option=Expression ":" "{" SwitchOptionStatSequence "}";
+	//    ("CASE" | "—À”◊¿…") option=Expression ":" SwitchOptionStatSequence;
 	public CaseStatElements getCaseStatAccess() {
 		return pCaseStat;
 	}
@@ -3818,8 +3809,9 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getCaseStatAccess().getRule();
 	}
 	
+	//   // "{" SwitchOptionStatSequence "}"
 	//DefaultStat:
-	//    ("DEFAULT" | "”ÃŒÀ◊¿Õ»≈") ":" "{" SwitchOptionStatSequence "}";
+	//    ("DEFAULT" | "”ÃŒÀ◊¿Õ»≈") ":" SwitchOptionStatSequence;
 	public DefaultStatElements getDefaultStatAccess() {
 		return pDefaultStat;
 	}
@@ -3828,6 +3820,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getDefaultStatAccess().getRule();
 	}
 	
+	//   // "{" SwitchOptionStatSequence "}"
 	//fragment SwitchOptionStatSequence:
 	//    statements+=Statement* hasBreak?=BreakStat?;
 	public SwitchOptionStatSequenceElements getSwitchOptionStatSequenceAccess() {
@@ -3961,7 +3954,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//CheckStateExpression:
-	//    ("PROC" | "œ–Œ÷") process=[Process] (("IN" "STATE") | ("¬" "—Œ—“")) qualfier=StateQualifier;
+	//    (logicalNot?="!")? ("PROC" | "œ–Œ÷") process=[Process] (("IN" "STATE") | ("¬" "—Œ—“")) qualfier=StateQualifier;
 	public CheckStateExpressionElements getCheckStateExpressionAccess() {
 		return pCheckStateExpression;
 	}
@@ -4002,7 +3995,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    FunctionCall |
 	//    PostfixOp |
 	//    InfixOp |
-	//    unaryOp=UnaryOp right=CastExpression;
+	//    (referenceOp?=BIT_AND | unaryOp=UnaryOp) right=CastExpression;
 	public UnaryExpressionElements getUnaryExpressionAccess() {
 		return pUnaryExpression;
 	}
@@ -4282,7 +4275,7 @@ public class ReflexOldGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//terminal FLOAT:
-	//    DEC_FLOAT | HEX_FLOAT;
+	//    SIGN? DEC_FLOAT | HEX_FLOAT;
 	public TerminalRule getFLOATRule() {
 		return tFLOAT;
 	}

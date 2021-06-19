@@ -18,6 +18,8 @@ import ru.iaie.reflexold.reflexOld.TimeAmountOrRef
 import ru.iaie.reflexold.reflexOld.Program
 import ru.iaie.reflexold.reflexOld.Process
 import java.util.ArrayList
+import ru.iaie.reflexold.reflexOld.PostfixOp
+import ru.iaie.reflexold.reflexOld.InfixOp
 
 /**
  * This class contains custom scoping description.
@@ -35,7 +37,9 @@ class ReflexOldScopeProvider extends AbstractReflexOldScopeProvider {
 			return Scopes.scopeFor(candidates)
 		}
 		
-		if (ctx instanceof PrimaryExpression && ref == ePackage.primaryExpression_Reference ||
+		if (ctx instanceof PostfixOp && ref == ePackage.postfixOp_Ref ||
+			ctx instanceof InfixOp && ref == ePackage.infixOp_Ref ||
+			ctx instanceof PrimaryExpression && ref == ePackage.primaryExpression_Reference ||
 			ctx instanceof AssignmentExpression && ref == ePackage.assignmentExpression_AssignVar ||
 			ctx instanceof TimeAmountOrRef && ref == ePackage.timeAmountOrRef_Ref) {
 			return getIdReferenceScope(ctx)		

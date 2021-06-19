@@ -18,6 +18,8 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import ru.iaie.reflexold.reflexOld.AssignmentExpression;
 import ru.iaie.reflexold.reflexOld.EnumMember;
 import ru.iaie.reflexold.reflexOld.ImportedVariableList;
+import ru.iaie.reflexold.reflexOld.InfixOp;
+import ru.iaie.reflexold.reflexOld.PostfixOp;
 import ru.iaie.reflexold.reflexOld.PrimaryExpression;
 import ru.iaie.reflexold.reflexOld.ProcessVariable;
 import ru.iaie.reflexold.reflexOld.Program;
@@ -44,7 +46,9 @@ public class ReflexOldScopeProvider extends AbstractReflexOldScopeProvider {
       final Iterable<ProcessVariable> candidates = IterableExtensions.<ProcessVariable>filter(((ImportedVariableList) ctx).getProcess().getVariables(), _function);
       return Scopes.scopeFor(candidates);
     }
-    if (((((ctx instanceof PrimaryExpression) && Objects.equal(ref, this.ePackage.getPrimaryExpression_Reference())) || 
+    if (((((((ctx instanceof PostfixOp) && Objects.equal(ref, this.ePackage.getPostfixOp_Ref())) || 
+      ((ctx instanceof InfixOp) && Objects.equal(ref, this.ePackage.getInfixOp_Ref()))) || 
+      ((ctx instanceof PrimaryExpression) && Objects.equal(ref, this.ePackage.getPrimaryExpression_Reference()))) || 
       ((ctx instanceof AssignmentExpression) && Objects.equal(ref, this.ePackage.getAssignmentExpression_AssignVar()))) || 
       ((ctx instanceof TimeAmountOrRef) && Objects.equal(ref, this.ePackage.getTimeAmountOrRef_Ref())))) {
       return this.getIdReferenceScope(ctx);

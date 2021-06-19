@@ -69,7 +69,7 @@ fragment TimeAmountOrRef:
 	time=INTEGER | ref=[IdReference];
 
 Function:
-	("FUNCTION" | "тсмйжхъ") returnType=Type name=ID "(" argTypes+=Type ("," argTypes+=Type)* ")" ";";
+	("FUNCTION" | "тсмйжхъ") returnType=Type name=ID "(" (argTypes+=Type "*"? ("," argTypes+=Type "*"?)*)? ")" ";";
 
 Const:
 	("CONST" | "йнмяр") name=ID value=Expression ";";
@@ -104,10 +104,10 @@ SwitchStat:
 	"}";
 
 CaseStat:
-	("CASE" | "яксвюи") option=Expression ":" "{" SwitchOptionStatSequence "}";
+	("CASE" | "яксвюи") option=Expression ":" SwitchOptionStatSequence;   // "{" SwitchOptionStatSequence "}"
 
 DefaultStat:
-	("DEFAULT" | "слнквюмхе") ":" "{" SwitchOptionStatSequence "}";
+	("DEFAULT" | "слнквюмхе") ":" SwitchOptionStatSequence;   // "{" SwitchOptionStatSequence "}"
 
 fragment SwitchOptionStatSequence:
 	statements+=Statement* hasBreak?=BreakStat?;
@@ -151,7 +151,7 @@ FunctionCall:
 	function=[Function] "(" (args+=Expression ("," args+=Expression)*)? ")";
 
 CheckStateExpression:
-	("PROC" | "опнж") process=[Process] (("IN" "STATE") | ("б" "яняр")) qualfier=StateQualifier;
+	(logicalNot?="!")? ("PROC" | "опнж") process=[Process] (("IN" "STATE") | ("б" "яняр")) qualfier=StateQualifier;
 
 enum StateQualifier:
 	ACTIVE_EN="ACTIVE" | ACTIVE_RU="юйрхбмне" |
@@ -171,7 +171,7 @@ UnaryExpression:
 	FunctionCall |
 	PostfixOp |
 	InfixOp |
-	unaryOp=UnaryOp right=CastExpression;
+	(referenceOp?=BIT_AND | unaryOp=UnaryOp) right=CastExpression;
 
 CastExpression:
 	UnaryExpression |
@@ -273,7 +273,7 @@ terminal INTEGER:
 	SIGN? (HEX | OCTAL | DECIMAL) (LONG | UNSIGNED)?;
 
 terminal FLOAT:
-	DEC_FLOAT | HEX_FLOAT;
+	SIGN? DEC_FLOAT | HEX_FLOAT;
 
 terminal fragment DEC_FLOAT:
 	DEC_SEQUENCE? '.' DEC_SEQUENCE (EXPONENT SIGN DEC_SEQUENCE)? (LONG | FLOAT_SUFFIX)?;

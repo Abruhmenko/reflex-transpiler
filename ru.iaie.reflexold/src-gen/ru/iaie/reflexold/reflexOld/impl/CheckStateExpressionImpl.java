@@ -22,6 +22,7 @@ import ru.iaie.reflexold.reflexOld.StateQualifier;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflexold.reflexOld.impl.CheckStateExpressionImpl#isLogicalNot <em>Logical Not</em>}</li>
  *   <li>{@link ru.iaie.reflexold.reflexOld.impl.CheckStateExpressionImpl#getProcess <em>Process</em>}</li>
  *   <li>{@link ru.iaie.reflexold.reflexOld.impl.CheckStateExpressionImpl#getQualfier <em>Qualfier</em>}</li>
  * </ul>
@@ -30,6 +31,26 @@ import ru.iaie.reflexold.reflexOld.StateQualifier;
  */
 public class CheckStateExpressionImpl extends CompareExpressionImpl implements CheckStateExpression
 {
+  /**
+   * The default value of the '{@link #isLogicalNot() <em>Logical Not</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isLogicalNot()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean LOGICAL_NOT_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isLogicalNot() <em>Logical Not</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isLogicalNot()
+   * @generated
+   * @ordered
+   */
+  protected boolean logicalNot = LOGICAL_NOT_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getProcess() <em>Process</em>}' reference.
    * <!-- begin-user-doc -->
@@ -79,6 +100,31 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
   protected EClass eStaticClass()
   {
     return ReflexOldPackage.Literals.CHECK_STATE_EXPRESSION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isLogicalNot()
+  {
+    return logicalNot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLogicalNot(boolean newLogicalNot)
+  {
+    boolean oldLogicalNot = logicalNot;
+    logicalNot = newLogicalNot;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReflexOldPackage.CHECK_STATE_EXPRESSION__LOGICAL_NOT, oldLogicalNot, logicalNot));
   }
 
   /**
@@ -161,6 +207,8 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
   {
     switch (featureID)
     {
+      case ReflexOldPackage.CHECK_STATE_EXPRESSION__LOGICAL_NOT:
+        return isLogicalNot();
       case ReflexOldPackage.CHECK_STATE_EXPRESSION__PROCESS:
         if (resolve) return getProcess();
         return basicGetProcess();
@@ -180,6 +228,9 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
   {
     switch (featureID)
     {
+      case ReflexOldPackage.CHECK_STATE_EXPRESSION__LOGICAL_NOT:
+        setLogicalNot((Boolean)newValue);
+        return;
       case ReflexOldPackage.CHECK_STATE_EXPRESSION__PROCESS:
         setProcess((ru.iaie.reflexold.reflexOld.Process)newValue);
         return;
@@ -200,6 +251,9 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
   {
     switch (featureID)
     {
+      case ReflexOldPackage.CHECK_STATE_EXPRESSION__LOGICAL_NOT:
+        setLogicalNot(LOGICAL_NOT_EDEFAULT);
+        return;
       case ReflexOldPackage.CHECK_STATE_EXPRESSION__PROCESS:
         setProcess((ru.iaie.reflexold.reflexOld.Process)null);
         return;
@@ -220,6 +274,8 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
   {
     switch (featureID)
     {
+      case ReflexOldPackage.CHECK_STATE_EXPRESSION__LOGICAL_NOT:
+        return logicalNot != LOGICAL_NOT_EDEFAULT;
       case ReflexOldPackage.CHECK_STATE_EXPRESSION__PROCESS:
         return process != null;
       case ReflexOldPackage.CHECK_STATE_EXPRESSION__QUALFIER:
@@ -239,7 +295,9 @@ public class CheckStateExpressionImpl extends CompareExpressionImpl implements C
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (qualfier: ");
+    result.append(" (logicalNot: ");
+    result.append(logicalNot);
+    result.append(", qualfier: ");
     result.append(qualfier);
     result.append(')');
     return result.toString();

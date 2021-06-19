@@ -13,6 +13,7 @@ package ru.iaie.reflexold.reflexOld;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link ru.iaie.reflexold.reflexOld.UnaryExpression#isReferenceOp <em>Reference Op</em>}</li>
  *   <li>{@link ru.iaie.reflexold.reflexOld.UnaryExpression#getUnaryOp <em>Unary Op</em>}</li>
  * </ul>
  *
@@ -22,6 +23,28 @@ package ru.iaie.reflexold.reflexOld;
  */
 public interface UnaryExpression extends CastExpression
 {
+  /**
+   * Returns the value of the '<em><b>Reference Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Reference Op</em>' attribute.
+   * @see #setReferenceOp(boolean)
+   * @see ru.iaie.reflexold.reflexOld.ReflexOldPackage#getUnaryExpression_ReferenceOp()
+   * @model
+   * @generated
+   */
+  boolean isReferenceOp();
+
+  /**
+   * Sets the value of the '{@link ru.iaie.reflexold.reflexOld.UnaryExpression#isReferenceOp <em>Reference Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Reference Op</em>' attribute.
+   * @see #isReferenceOp()
+   * @generated
+   */
+  void setReferenceOp(boolean value);
+
   /**
    * Returns the value of the '<em><b>Unary Op</b></em>' attribute.
    * The literals are from the enumeration {@link ru.iaie.reflexold.reflexOld.UnaryOp}.

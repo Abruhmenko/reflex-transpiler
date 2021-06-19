@@ -222,6 +222,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReflexOld.ecore#//FunctionCall/args"/>
     </genClasses>
     <genClasses ecoreClass="ReflexOld.ecore#//CheckStateExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReflexOld.ecore#//CheckStateExpression/logicalNot"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReflexOld.ecore#//CheckStateExpression/process"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReflexOld.ecore#//CheckStateExpression/qualfier"/>
     </genClasses>
@@ -233,6 +234,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReflexOld.ecore#//PrimaryExpression/nestedExpr"/>
     </genClasses>
     <genClasses ecoreClass="ReflexOld.ecore#//UnaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReflexOld.ecore#//UnaryExpression/referenceOp"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReflexOld.ecore#//UnaryExpression/unaryOp"/>
     </genClasses>
     <genClasses ecoreClass="ReflexOld.ecore#//CastExpression">
