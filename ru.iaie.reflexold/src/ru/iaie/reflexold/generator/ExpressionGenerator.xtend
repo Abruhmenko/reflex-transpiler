@@ -192,8 +192,8 @@ class ExpressionGenerator {
 			case FLOAT_RU: return "float"
 			case DOUBLE_EN: return "double"
 			case DOUBLE_RU: return "double"
-			case BOOL_EN: return "uint8"
-			case BOOL_RU: return "uint8"
+			case BOOL_EN: return "bool"
+			case BOOL_RU: return "bool"
 			case VOID_EN: return "void"
 			case VOID_RU: return "void"
 		}

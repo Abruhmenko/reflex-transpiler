@@ -293,9 +293,9 @@ public class ExpressionGenerator {
         case DOUBLE_RU:
           return "double";
         case BOOL_EN:
-          return "uint8";
+          return "bool";
         case BOOL_RU:
-          return "uint8";
+          return "bool";
         case VOID_EN:
           return "void";
         case VOID_RU:
